@@ -13,14 +13,34 @@ var upperCasedCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+var questions = function() {
+var uppercaseConfirm = confirm("Do you want uppercase letters");
+var lowercaseConfirm = confirm("Do you want lowercase letters?");
+var numericConfirm = confirm("Do you want numbers?");
+var specialConfirm = confirm("Do you want special characters?");
+};
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+  if (uppercaseConfirm) {
 
-}
+  }
+  
+  var possibleCharacters = []
+  var password = []
+  
+  for (var i = 0; i < passwordLength; i++) {
+    var index = math.floor(Math.random() * Option.length);
+    var computerChoice = possibleCharacters[index];
+  }
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+writePassword();
