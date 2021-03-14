@@ -15,7 +15,6 @@ var generateBtn = document.querySelector("#generate");
 
 // pop up window code
 function getPassword() {
-  console.log
   var length = parseInt(
     prompt("How many characters would you like you password?")
   );
@@ -28,7 +27,7 @@ function getPassword() {
     alert("Password must be between 8 and 128 characters")
     return;
   }
-  var upperCasedCharacters = confirm("Do you want uppercase letters");
+  var upperCasedCharacters = confirm("Do you want uppercase letters?");
 
   var lowerCasedCharacters = confirm("Do you want lowercase letters?");
   
@@ -36,30 +35,38 @@ function getPassword() {
   
   var specialCharacters = confirm("Do you want special characters?");
 
-  var passwordchoices = {
+  if (specialCharacters == false && numericCharacters == false && lowerCasedCharacters == false && upperCasedCharacters == false) {
+    alert("You must choose at least one type of character");
+    return;
+  }
+  var passwordChoices = {
     length: length,
     specialCharacters: specialCharacters,
     numericCharacters: numericCharacters,
     lowerCasedCharacters: lowerCasedCharacters,
     upperCasedCharacters: upperCasedCharacters
   };
+  console.log(passwordChoices)
+  return passwordChoices
 }
+
 function getRandom(arr) {
-  var randIndex = Math.floor(Math.random() = arr.length);
+  var randIndex = Math.floor(Math.random() * arr.length);
   var randElement = arr[randIndex]
 
   return randElement;
 }
 function generatePassword() {
-  var options = getPasswordChoices();
+  var options = getPassword();
   var result = [];
   var possibleCharacters = [];
   var guaranteedPassword = [];
-
+console.log(options)
   if(options.specialCharacters) {
     possibleCharacters = possibleCharacters.concat(specialCharacters);
     guaranteedPassword.push(getRandom(specialCharacters));
   }
+  console.log("kill me")
   if (options.numericCharacters) {
     possibleCharacter = possibleCharacters.concat(numericCharacters)
     guaranteedPassword.push(getRandom(numericCharacters));
@@ -94,4 +101,5 @@ generateBtn.addEventListener("click", writePassword);
 
 
 getPassword();
+generatePassword();
 writePassword();
