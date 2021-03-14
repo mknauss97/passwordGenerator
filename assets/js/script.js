@@ -15,6 +15,7 @@ var generateBtn = document.querySelector("#generate");
 
 // pop up window code
 function getPassword() {
+  console.log
   var length = parseInt(
     prompt("How many characters would you like you password?")
   );
@@ -42,7 +43,6 @@ function getPassword() {
     lowerCasedCharacters: lowerCasedCharacters,
     upperCasedCharacters: upperCasedCharacters
   };
-  return passwordchoices;
 }
 function getRandom(arr) {
   var randIndex = Math.floor(Math.random() = arr.length);
@@ -86,11 +86,12 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
+    passwordText.value = password;
 };
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
-
+getPassword();
 writePassword();
