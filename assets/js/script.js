@@ -13,12 +13,38 @@ var upperCasedCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var questions = function() {
-var uppercaseConfirm = confirm("Do you want uppercase letters");
-var lowercaseConfirm = confirm("Do you want lowercase letters?");
-var numericConfirm = confirm("Do you want numbers?");
-var specialConfirm = confirm("Do you want special characters?");
-};
+// pop up window code
+function getPassword() {
+  var length = parseInt(
+    prompt("How many characters would you like you password?")
+  );
+
+  if (isNaN(length) == true) {
+    alert("Password length must be answered with a number");
+    return;
+  }
+  if (length < 8 || length > 128) {
+    alert("Password must be between 8 and 128 characters")
+    return;
+  }
+  var uppercaseConfirm = confirm("Do you want uppercase letters");
+
+  var lowercaseConfirm = confirm("Do you want lowercase letters?");
+  
+  var numericConfirm = confirm("Do you want numbers?");
+  
+  var specialConfirm = confirm("Do you want special characters?");
+
+  var passwordchoices = {
+    length: length,
+    specialCharacters: specialCharacters,
+    numericCharacters: numericCharacters,
+    lowerCasedCharacters: lowerCasedCharacters,
+    upperCasedCharacters: upperCasedCharacters
+  };
+  return passwordchoices;
+}
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -42,5 +68,5 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-
+getPasswordChoices();
 writePassword();
