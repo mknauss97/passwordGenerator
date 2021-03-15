@@ -15,38 +15,40 @@ var generateBtn = document.querySelector("#generate");
 
 // pop up window code
 function getPassword() {
-  var length = parseInt(
+  var tempLength = parseInt(
     prompt("How many characters would you like you password?")
   );
 
-  if (isNaN(length) == true) {
+  if (isNaN(tempLength) == true) {
     alert("Password length must be answered with a number");
     return;
   }
-  if (length < 8 || length > 128) {
+  if (tempLength < 8 || tempLength > 128) {
     alert("Password must be between 8 and 128 characters")
     return;
   }
-  var upperCasedCharacters = confirm("Do you want uppercase letters?");
+  var uChars = confirm("Do you want uppercase letters?");
 
-  var lowerCasedCharacters = confirm("Do you want lowercase letters?");
+  var lChars = confirm("Do you want lowercase letters?");
   
-  var numericCharacters= confirm("Do you want numbers?");
+  var nChars= confirm("Do you want numbers?");
   
-  var specialCharacters = confirm("Do you want special characters?");
+  var sChars = confirm("Do you want special characters?");
+    
 
-  if (specialCharacters == false && numericCharacters == false && lowerCasedCharacters == false && upperCasedCharacters == false) {
+  if (sChars == false && nChars == false && lChars == false && uChars == false) {
     alert("You must choose at least one type of character");
     return;
   }
   var passwordChoices = {
-    length: length,
-    specialCharacters: specialCharacters,
-    numericCharacters: numericCharacters,
-    lowerCasedCharacters: lowerCasedCharacters,
-    upperCasedCharacters: upperCasedCharacters
+    pLength: tempLength,
+    hasSpecialCharacters: sChars,
+    hasNumericCharacters: nChars,
+    hasLowerCasedCharacters: lChars,
+    hasUpperCasedCharacters: uChars
   };
-  console.log(passwordChoices)
+
+  console.log(passwordChoices);
   return passwordChoices
 }
 
@@ -56,36 +58,39 @@ function getRandom(arr) {
 
   return randElement;
 }
+
 function generatePassword() {
   var options = getPassword();
   var result = [];
   var possibleCharacters = [];
   var guaranteedPassword = [];
-console.log(options)
-  if(options.specialCharacters) {
+  
+  if(options.hasSpecialCharacters) {
     possibleCharacters = possibleCharacters.concat(specialCharacters);
     guaranteedPassword.push(getRandom(specialCharacters));
+    console.log("hi")
   }
   console.log("kill me")
-  if (options.numericCharacters) {
-    possibleCharacter = possibleCharacters.concat(numericCharacters)
+  if (options.hasNumericCharacters) {
+    possibleCharacters = possibleCharacters.concat(numericCharacters)
     guaranteedPassword.push(getRandom(numericCharacters));
   }
-  if (options.lowerCasedCharacters) {
+  if (options.hasLowerCasedCharacters) {
     possibleCharacters = possibleCharacters.concat(lowerCasedCharacters)
     guaranteedPassword.push(getRandom(lowerCasedCharacters));
   }
-  if (options.upperCasedCharacters) {
+  if (options.hasUpperCasedCharacters) {
     possibleCharacters = possibleCharacters.concat(upperCasedCharacters)
     guaranteedPassword.push(getRandom(upperCasedCharacters));
   }
-  for (var i = 0; i < options.length; i++) {
-    var possibleCharacter = getRandom(possibleCharacter);
-    result.push(possibleCharacters);
+  for (var i = 0; i < options.pLength; i++) {
+    var randCharacter = getRandom(possibleCharacters);
+    result.push(randCharacter);
   }
   for (var i = 0; i < guaranteedPassword.length; i++) {
     result[i] = guaranteedPassword[i];
   }
+  return result.join('');
 }
 
 // Write password to the #password input
@@ -100,6 +105,5 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-getPassword();
-generatePassword();
+
 writePassword();
