@@ -68,9 +68,9 @@ function generatePassword() {
   if(options.hasSpecialCharacters) {
     possibleCharacters = possibleCharacters.concat(specialCharacters);
     guaranteedPassword.push(getRandom(specialCharacters));
-    console.log("hi")
+    
   }
-  console.log("kill me")
+  
   if (options.hasNumericCharacters) {
     possibleCharacters = possibleCharacters.concat(numericCharacters)
     guaranteedPassword.push(getRandom(numericCharacters));
