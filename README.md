@@ -11,4 +11,4 @@ it will also alert if they respond no to each question of what they would like t
 
 link to deployed application src=https://mknauss97.github.io/passwordGenerator/
 
-![screenshot](assets/images/Screenshot 2021-03-15 183722.jpg)
+![screenshot](assets/images/screenshot.jpg)
